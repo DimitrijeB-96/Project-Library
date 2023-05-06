@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Library</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="popup" style="visibility: hidden;">
+    <button id="close-window" class="btn x">X</button>
+    <p>Add new book</p>
+
+    <div class="div-book-title">
+      <label for="book-title">Book title:</label>
+      <input type="text" id="book-title" name="book-title">
+    </div>
+    
+    <div class="div-book-author">
+      <label for="book-author">Book author:</label>
+      <input type="text" id="book-author" name="book-author">
+    </div>
+
+    <div class="div-book-pages">
+      <label for="num-pages">How many pages:</label>
+      <input type="tel" id="num-pages" name="num-pages">
+    </div>
+
+    <button class="btn add" id="add-book" type="submit">Done</button>
+  </div>
+
+  <div class="layout-grid">
+    <header>
+      <h1>Library</h1>
+    </header>
+
+    <div class="main">
+      <div class="main-container"> <!-- Add items in this container below preview-books -->
+        <div class="preview-books">
+          <h3>Book</h3>
+          <h3>Author</h3>
+          <h3>Pages</h3>
+        </div>
+        <div class="display-book"> <!-- Example -->
+          <p>Lord of the Rings</p>
+          <p>J.R.R Tolkien</p>
+          <p>This many pages</p>
+          <button class="btn x">X</button>
+        </div>
+        <div class="display-book"> <!-- Example -->
+          <p>Harry Potter</p>
+          <p>J.K Rowling</p>
+          <p>This many pages</p>
+          <button class="btn x">X</button>
+        </div>
+        <button id="new-book-window" class="btn add">Add</button>
+      </div>
+    </div>
+
+    <footer>
+  
+    </footer>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
