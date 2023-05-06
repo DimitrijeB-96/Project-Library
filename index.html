@@ -27,41 +27,52 @@
       <input type="tel" id="num-pages" name="num-pages">
     </div>
 
+    <div class="div-book-status">
+      <label for="book-status">Finished reading? </label>
+      <input type="checkbox" id="book-status" name="book-status">
+    </div>
+
     <button class="btn add" id="add-book" type="submit">Done</button>
   </div>
 
   <div class="layout-grid">
     <header>
-      <h1>Library</h1>
+      <h1>My Book Library</h1>
     </header>
-
+  
     <div class="main">
-      <div class="main-container"> <!-- Add items in this container below preview-books -->
+      <div class="main-container">
         <div class="preview-books">
-          <h3>Book</h3>
-          <h3>Author</h3>
-          <h3>Pages</h3>
+          <h3 class="title">Book</h3>
+          <h3 class="author">Author</h3>
+          <h3 class="pages">Pages</h3>
+          <h3 class="status">Status</h3>
         </div>
-        <div class="display-book"> <!-- Example -->
-          <p>Lord of the Rings</p>
-          <p>J.R.R Tolkien</p>
-          <p>This many pages</p>
+        <div class="display-book">
+          <p class="title">First Book</p>
+          <p class="author">Book Author</p>
+          <p class="pages">150</p>
+          <button class="read finished">Read</button>
           <button class="btn x">X</button>
         </div>
-        <div class="display-book"> <!-- Example -->
-          <p>Harry Potter</p>
-          <p>J.K Rowling</p>
-          <p>This many pages</p>
+        <div class="display-book">
+          <p>First Book</p>
+          <p>Book Author</p>
+          <p>150</p>
+          <button class="read not-finished">Not read</button>
           <button class="btn x">X</button>
         </div>
+        <!-- Inserted list of books are added here, div class = display-book-->
         <button id="new-book-window" class="btn add">Add</button>
       </div>
     </div>
-
-    <footer>
   
-    </footer>
+    <div class="footer">
+      <div class="mid-footer">Odin</div>
+      <div class="right-footer">Check my GitHub</div>
+    </div>
   </div>
+  
   <script src="app.js"></script>
 </body>
 </html>
