@@ -8,23 +8,23 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <form class="popup" style="visibility: hidden;">
+  <div class="popup" style="visibility: hidden;">
     <button id="close-window" class="btn x">X</button>
     <p>Add new book</p>
 
     <div class="div-book-title">
       <label for="book-title">Book title:</label>
-      <input type="text" id="book-title" name="book-title">
+      <input type="text" id="book-title" name="book-title" required>
     </div>
     
     <div class="div-book-author">
       <label for="book-author">Book author:</label>
-      <input type="text" id="book-author" name="book-author">
+      <input type="text" id="book-author" name="book-author" required>  
     </div>
 
     <div class="div-book-pages">
       <label for="num-pages">How many pages:</label>
-      <input type="tel" id="num-pages" name="num-pages" pattern="[0-9]">
+      <input type="tel" id="num-pages" name="num-pages" required>
     </div>
 
     <div class="div-book-status">
@@ -33,7 +33,7 @@
     </div>
 
     <button class="btn add" id="add-book" type="submit">Done</button>
-  </form>
+  </div>
 
   <div class="layout-grid">
     <div class="header">

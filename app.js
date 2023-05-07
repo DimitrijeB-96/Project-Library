@@ -81,12 +81,6 @@ btnAddNewBook.addEventListener('click', () => {
   popUpWindow.style.visibility = 'visible';
 });
 
-btnCloseWindow.addEventListener('click', () => {
-  popUpWindow.style.visibility = 'hidden';
-  document.querySelector('.black').remove();
-  bookStatus.checked = false;
-});
-
 btnAddBook.addEventListener('click', (e) => {
   if (bookStatus.checked === true) {
     bookStatus.status = 'checked';
@@ -105,5 +99,11 @@ btnAddBook.addEventListener('click', (e) => {
   bookTitle.value = '';
   bookAuthor.value = '';
   bookPages.value = '';
+  bookStatus.checked = false;
+});
+
+btnCloseWindow.addEventListener('click', () => {
+  popUpWindow.style.visibility = 'hidden';
+  document.querySelector('.black').remove();
   bookStatus.checked = false;
 });
