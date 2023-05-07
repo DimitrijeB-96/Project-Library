@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="popup" style="visibility: hidden;">
+  <form class="popup" style="visibility: hidden;">
     <button id="close-window" class="btn x">X</button>
     <p>Add new book</p>
 
@@ -24,7 +24,7 @@
 
     <div class="div-book-pages">
       <label for="num-pages">How many pages:</label>
-      <input type="tel" id="num-pages" name="num-pages">
+      <input type="tel" id="num-pages" name="num-pages" pattern="[0-9]">
     </div>
 
     <div class="div-book-status">
@@ -33,12 +33,12 @@
     </div>
 
     <button class="btn add" id="add-book" type="submit">Done</button>
-  </div>
+  </form>
 
   <div class="layout-grid">
-    <header>
-      <h1>My Book Library</h1>
-    </header>
+    <div class="header">
+      <h1 class="header-title">My Book Library</h1>
+    </div>
   
     <div class="main">
       <div class="main-container">
@@ -48,28 +48,9 @@
           <h3 class="pages">Pages</h3>
           <h3 class="status">Status</h3>
         </div>
-        <div class="display-book">
-          <p class="title">First Book</p>
-          <p class="author">Book Author</p>
-          <p class="pages">150</p>
-          <button class="read finished">Read</button>
-          <button class="btn x">X</button>
-        </div>
-        <div class="display-book">
-          <p>First Book</p>
-          <p>Book Author</p>
-          <p>150</p>
-          <button class="read not-finished">Not read</button>
-          <button class="btn x">X</button>
-        </div>
         <!-- Inserted list of books are added here, div class = display-book-->
         <button id="new-book-window" class="btn add">Add</button>
       </div>
-    </div>
-  
-    <div class="footer">
-      <div class="mid-footer">Odin</div>
-      <div class="right-footer">Check my GitHub</div>
     </div>
   </div>
   

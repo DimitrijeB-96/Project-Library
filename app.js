@@ -1,4 +1,4 @@
-let myLibrary = [];
+const myLibrary = [];
 
 function Book(author, title, pages, status) {
   this.author = author;
@@ -19,12 +19,34 @@ function addBookToLibrary(thisBook) {
   bookAuthorDisplay.textContent = thisBook.author;
   const bookPagesDisplay = document.createElement('p');
   bookPagesDisplay.textContent = thisBook.pages;
-  const bookStatusDisplay = document.createElement('button');
-
   const btnDeleteBook = document.createElement('button');
   btnDeleteBook.textContent = 'X';
   btnDeleteBook.classList.add('btn');
   btnDeleteBook.classList.add('x');
+
+  const bookStatusDisplay = document.createElement('button');
+  bookStatusDisplay.classList.add('read');
+  if (thisBook.status === 'checked') {
+    bookStatusDisplay.textContent = 'Read';
+    bookStatusDisplay.classList.add('finished');
+  } else {
+    bookStatusDisplay.textContent = 'Not read';
+    bookStatusDisplay.classList.add('not-finished');
+  }
+
+  bookStatusDisplay.addEventListener('click', () => {
+    if (bookStatusDisplay.textContent === 'Read') {
+      bookStatusDisplay.classList.remove('finished');
+      bookStatusDisplay.classList.add('not-finished');
+      bookStatusDisplay.textContent = 'Not read';
+      thisBook.status = 'unchecked';
+    } else {
+      bookStatusDisplay.classList.remove('not-finished');
+      bookStatusDisplay.classList.add('finished');
+      bookStatusDisplay.textContent = 'Read';
+      thisBook.status = 'checked';
+    }
+  });
 
   btnDeleteBook.addEventListener('click', () => {
     const index = myLibrary.indexOf(thisBook);
@@ -38,6 +60,7 @@ function addBookToLibrary(thisBook) {
   create.appendChild(bookAuthorDisplay);
   create.appendChild(bookPagesDisplay);
   create.appendChild(btnDeleteBook);
+  create.appendChild(bookStatusDisplay);
   create.classList.add('display-book');
 }
 
@@ -49,21 +72,38 @@ const btnAddBook = document.getElementById('add-book');
 const bookTitle = document.getElementById('book-title');
 const bookAuthor = document.getElementById('book-author');
 const bookPages = document.getElementById('num-pages');
+const bookStatus = document.getElementById('book-status');
 
 btnAddNewBook.addEventListener('click', () => {
+  const blackBackground = document.createElement('div');
+  blackBackground.classList.add('black');
+  document.body.appendChild(blackBackground);
   popUpWindow.style.visibility = 'visible';
 });
 
 btnCloseWindow.addEventListener('click', () => {
   popUpWindow.style.visibility = 'hidden';
+  document.querySelector('.black').remove();
+  bookStatus.checked = false;
 });
 
 btnAddBook.addEventListener('click', (e) => {
-  const newBook = new Book(bookAuthor.value, bookTitle.value, bookPages.value, bookPages.status);
+  if (bookStatus.checked === true) {
+    bookStatus.status = 'checked';
+  } else {
+    bookStatus.status = 'unchecked';
+  }
+
+  const newBook = new Book(bookAuthor.value, bookTitle.value, bookPages.value, bookStatus.status);
   myLibrary.push(newBook);
 
   addBookToLibrary(newBook);
 
   e.preventDefault();
   popUpWindow.style.visibility = 'hidden';
+  document.querySelector('.black').remove();
+  bookTitle.value = '';
+  bookAuthor.value = '';
+  bookPages.value = '';
+  bookStatus.checked = false;
 });

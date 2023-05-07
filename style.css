@@ -23,7 +23,6 @@ body {
   width: 100vw;
   height: 100vh;
   position: relative;
-  overflow: hidden;
 }
 
 * {
@@ -34,27 +33,30 @@ body {
 
 .layout-grid {
   display: grid;
-  grid-template-rows: 1fr 8fr 1fr;
+  grid-template-rows: 10vh 90vh;
   grid-template-areas: 
     "header"
-    "main"
-    "footer";
+    "main";
 }
 
-header {
+.header {
+  display: flex;
   grid-area: header;
   background-color: var(--lightslate-color);
   box-shadow: 0 4px 8px -5px darkgray;
 }
 
-header > h1 {
+.header-title {
+  display: block;
   font-family: 'Lobster', Arial, Helvetica, sans-serif;
-  font-size: 4em;
+  font-size: 3em;
   letter-spacing: 0.2em;
   color: var(--rose-color);
   margin-left: 20px;
-  margin-top: 10px;
+  padding-top: 16px;
 }
+
+
 
 .main {
   grid-area: main;
@@ -179,17 +181,6 @@ header > h1 {
   height: 40px;
 }
 
-.footer {
-  grid-area: footer;
-  height: 100px;
-  background-color: #334155;
-
-  display: grid;
-  grid-template-columns: 50% 25% 25%;
-  grid-template-areas: 
-    "left mid right";
-}
-
 .mid-footer {
   grid-area: mid;
   color: white;
@@ -214,7 +205,7 @@ header > h1 {
   border-radius: 14px;
 
   left: 41%;
-  top: 15%;
+  top: 20%;
 
   z-index: 100;
 }
@@ -265,12 +256,43 @@ header > h1 {
 }
 
 .popup input[type="checkbox"] {
+  appearance:  none;
+  position: relative;
   width: 30px;
-  outline: none;
 }
+
+.popup input[type="checkbox"]:focus {
+  outline: none;
+  border: 2px solid var(--darkslate-color);
+}
+
+input[type="checkbox"]::before {
+  content: "✔";
+  position: absolute;
+  font-size: 1.5em;
+  right: -1px;
+  top: -0.25em;
+  visibility: hidden;
+}
+
+input[type="checkbox"]:checked::before {
+  visibility: visible;
+}
+
 
 .popup .add {
   align-self: center;
   justify-self: flex-end;
   margin-top: 20px;
+}
+
+.black {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 50;
+  background-color: var(--darkgray-color);
+  opacity: 0.6;
 }
