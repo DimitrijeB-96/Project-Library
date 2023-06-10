@@ -1,10 +1,12 @@
 const myLibrary = [];
 
-function Book(author, title, pages, status) {
-  this.author = author;
-  this.title = title;
-  this.pages = pages;
-  this.status = status;
+class Book {
+  constructor(author, title, pages, bookStatus) {
+    this.author = author;
+    this.title = title;
+    this.pages = pages;
+    this.status = bookStatus;
+  }
 }
 
 const selectMainContainer = document.querySelector('.main-container');
@@ -74,6 +76,10 @@ const bookAuthor = document.getElementById('book-author');
 const bookPages = document.getElementById('num-pages');
 const bookStatus = document.getElementById('book-status');
 
+const emptyBookTitle = document.querySelector('.fill-book-title');
+const emptyBookAuthor = document.querySelector('.fill-book-author');
+const emptyBookPages = document.querySelector('.fill-book-pages');
+
 btnAddNewBook.addEventListener('click', () => {
   const blackBackground = document.createElement('div');
   blackBackground.classList.add('black');
@@ -82,28 +88,55 @@ btnAddNewBook.addEventListener('click', () => {
 });
 
 btnAddBook.addEventListener('click', (e) => {
-  if (bookStatus.checked === true) {
-    bookStatus.status = 'checked';
+  if (bookTitle.value === '' || bookAuthor.value === '' || bookPages.value === '' || bookPages.value !== typeof "number") {
+    if (bookTitle.value === '') {
+      emptyBookTitle.style.visibility = 'visible';
+    } else {
+      emptyBookTitle.style.visibility = 'hidden';
+    }
+
+    if (bookAuthor.value === '') {
+      emptyBookAuthor.style.visibility = 'visible';
+    } else {
+      emptyBookAuthor.style.visibility = 'hidden';
+    }
+
+    if (bookPages.value === '' || bookPages.value !== typeof "number") {
+      emptyBookPages.style.visibility = 'visible';
+    } else {
+      emptyBookPages.style.visibility = 'hidden';
+    }
+
   } else {
-    bookStatus.status = 'unchecked';
+    emptyBookPages.style.visibility = 'hidden';
+    emptyBookAuthor.style.visibility = 'hidden';
+    emptyBookTitle.style.visibility = 'hidden';
+
+    if (bookStatus.checked === true) {
+      bookStatus.status = 'checked';
+    } else {
+      bookStatus.status = 'unchecked';
+    }
+    const newBook = new Book(bookAuthor.value, bookTitle.value, bookPages.value, bookStatus.status);
+    myLibrary.push(newBook);
+
+    addBookToLibrary(newBook);
+
+    e.preventDefault();
+    popUpWindow.style.visibility = 'hidden';
+    document.querySelector('.black').remove();
+    bookTitle.value = '';
+    bookAuthor.value = '';
+    bookPages.value = '';
+    bookStatus.checked = false;
   }
-
-  const newBook = new Book(bookAuthor.value, bookTitle.value, bookPages.value, bookStatus.status);
-  myLibrary.push(newBook);
-
-  addBookToLibrary(newBook);
-
-  e.preventDefault();
-  popUpWindow.style.visibility = 'hidden';
-  document.querySelector('.black').remove();
-  bookTitle.value = '';
-  bookAuthor.value = '';
-  bookPages.value = '';
-  bookStatus.checked = false;
 });
 
 btnCloseWindow.addEventListener('click', () => {
   popUpWindow.style.visibility = 'hidden';
   document.querySelector('.black').remove();
   bookStatus.checked = false;
+  emptyBookPages.style.visibility = 'hidden';
+  emptyBookAuthor.style.visibility = 'hidden';
+  emptyBookTitle.style.visibility = 'hidden';
 });
