@@ -88,7 +88,8 @@ btnAddNewBook.addEventListener('click', () => {
 });
 
 btnAddBook.addEventListener('click', (e) => {
-  if (bookTitle.value === '' || bookAuthor.value === '' || bookPages.value === '' || bookPages.value !== typeof "number") {
+  const regex = /[0-9]*/;
+  if (bookTitle.value === '' || bookAuthor.value === '' || bookPages.value === '') {
     if (bookTitle.value === '') {
       emptyBookTitle.style.visibility = 'visible';
     } else {
@@ -101,7 +102,7 @@ btnAddBook.addEventListener('click', (e) => {
       emptyBookAuthor.style.visibility = 'hidden';
     }
 
-    if (bookPages.value === '' || bookPages.value !== typeof "number") {
+    if (bookPages.value === '') {
       emptyBookPages.style.visibility = 'visible';
     } else {
       emptyBookPages.style.visibility = 'hidden';
