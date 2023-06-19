@@ -88,8 +88,12 @@ btnAddNewBook.addEventListener('click', () => {
 });
 
 btnAddBook.addEventListener('click', (e) => {
-  const regex = /[0-9]*/;
-  if (bookTitle.value === '' || bookAuthor.value === '' || bookPages.value === '') {
+
+  const pages = document.getElementById('num-pages').value;
+  const regexNum = /^\d+$/;
+  
+  if (bookTitle.value === '' || bookAuthor.value === '' || bookPages.value === '' || !pages.match(regexNum)) {
+    console.log(pages.match(regex));
     if (bookTitle.value === '') {
       emptyBookTitle.style.visibility = 'visible';
     } else {
@@ -102,7 +106,7 @@ btnAddBook.addEventListener('click', (e) => {
       emptyBookAuthor.style.visibility = 'hidden';
     }
 
-    if (bookPages.value === '') {
+    if (bookPages.value === '' || !pages.match(regexNum)) {
       emptyBookPages.style.visibility = 'visible';
     } else {
       emptyBookPages.style.visibility = 'hidden';
