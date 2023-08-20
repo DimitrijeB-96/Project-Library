@@ -196,18 +196,27 @@ body {
   flex-direction: column;
 
   position: absolute;
-  width: 300px;
-  height: 400px;
+  width: 420px;
+  height: 450px;
   background-color: var(--white-color);
   padding: 10px;
 
   border: 2px solid var(--darkgray-color);
   border-radius: 14px;
 
-  left: 41%;
-  top: 20%;
+  left: 50%;
+  top: 50%;
+  margin-left: -210px;
+  margin-top: -225px;
 
   z-index: 100;
+}
+
+.div-book-title,
+.div-book-author,
+.div-book-pages,
+.div-book-status {
+  margin-bottom: 10px;
 }
 
 .popup p {
@@ -225,35 +234,17 @@ body {
   font-size: 20px;
   font-weight: 500;
 }
+/* ADD HERE */
 
-.fill {
+.display-error-title,
+.display-error-author,
+.display-error-pages {
   position: absolute;
-  display: inline-block;
-  width: 180px;
-  height: 30px;
-  left: 305px;
-  background-color: var(--highrose-color);
-  color: var(--white-color);
-  text-align: center;
-  padding-top: 4px;
-  border-radius: 6px;
+  right: 0;
+  padding-right: 12px;
+  padding-top: 10px;
+  color: var(--highrose-color)
 }
-
-.fill-book-title {
-  top: 136px;
-  
-}
-
-.fill-book-author {
-  top: 195px;
-}
-
-.fill-book-pages {
-  width: 340px;
-  top: 254px;
-}
-
-
 
 .popup input {
   width: 100%;
@@ -300,14 +291,13 @@ input[type="checkbox"]::before {
   position: absolute;
   font-size: 25px;
   right: 1px;
-  top: -0.35em;
+  top: -0.22em;
   visibility: hidden;
 }
 
 input[type="checkbox"]:checked::before {
   visibility: visible;
 }
-
 
 .popup .add {
   align-self: center;

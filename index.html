@@ -8,23 +8,23 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="popup" style="visibility: hidden;">
+  <form novalidate class="popup" style="visibility: hidden;">
     <button id="close-window" class="btn x">X</button>
     <p>Add new book</p>
 
     <div class="div-book-title">
-      <label for="book-title">Book title: *</label><span class="fill fill-book-title" style="visibility: hidden;">This field is required</span>
-      <input type="text" id="book-title" name="book-title">
+      <label for="book-title">Book title: *</label><span class="display-error-title"></span>
+      <input type="text" id="book-title" name="book-title" required pattern="[a-zA-Z]{2,30}">
     </div>
     
     <div class="div-book-author">
-      <label for="book-author">Book author: *</label><span class="fill fill-book-author" style="visibility: hidden;">This field is required</span>
-      <input type="text" id="book-author" name="book-author">
+      <label for="book-author">Book author: *</label><span class="display-error-author"></span>
+      <input type="text" id="book-author" name="book-author" required pattern="[a-zA-Z]{2,30}">
     </div>
 
     <div class="div-book-pages">
-      <label for="num-pages">How many pages: *</label><span class="fill fill-book-pages" style="visibility: hidden;">This field is required, please enter number</span>
-      <input type="tel" id="num-pages" name="num-pages">
+      <label for="num-pages">How many pages: *</label><span class="display-error-pages"></span>
+      <input type="tel" id="num-pages" name="num-pages" required min="10" max="10000" pattern="[0-9]{2,5}">
     </div>
 
     <div class="div-book-status">
@@ -33,7 +33,7 @@
     </div>
 
     <button class="btn add" id="add-book" type="submit">Done</button>
-  </div>
+  </form>
 
   <div class="layout-grid">
     <div class="header">

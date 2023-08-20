@@ -76,9 +76,10 @@ const bookAuthor = document.getElementById('book-author');
 const bookPages = document.getElementById('num-pages');
 const bookStatus = document.getElementById('book-status');
 
-const emptyBookTitle = document.querySelector('.fill-book-title');
-const emptyBookAuthor = document.querySelector('.fill-book-author');
-const emptyBookPages = document.querySelector('.fill-book-pages');
+const bookTitleErrorMessage = document.querySelector('.display-error-title');
+const bookAuthorErrorMessage = document.querySelector('.display-error-author');
+const bookPagesErrorMessage = document.querySelector('.display-error-pages');
+
 
 btnAddNewBook.addEventListener('click', () => {
   const blackBackground = document.createElement('div');
@@ -88,35 +89,13 @@ btnAddNewBook.addEventListener('click', () => {
 });
 
 btnAddBook.addEventListener('click', (e) => {
+  e.preventDefault();
 
-  const pages = document.getElementById('num-pages').value;
-  const regexNum = /^\d+$/;
-  
-  if (bookTitle.value === '' || bookAuthor.value === '' || bookPages.value === '' || !pages.match(regexNum)) {
-    console.log(pages.match(regex));
-    if (bookTitle.value === '') {
-      emptyBookTitle.style.visibility = 'visible';
-    } else {
-      emptyBookTitle.style.visibility = 'hidden';
-    }
+  const submit = fieldsCheck();
 
-    if (bookAuthor.value === '') {
-      emptyBookAuthor.style.visibility = 'visible';
-    } else {
-      emptyBookAuthor.style.visibility = 'hidden';
-    }
-
-    if (bookPages.value === '' || !pages.match(regexNum)) {
-      emptyBookPages.style.visibility = 'visible';
-    } else {
-      emptyBookPages.style.visibility = 'hidden';
-    }
-
+  if (submit === false) {
+    return;
   } else {
-    emptyBookPages.style.visibility = 'hidden';
-    emptyBookAuthor.style.visibility = 'hidden';
-    emptyBookTitle.style.visibility = 'hidden';
-
     if (bookStatus.checked === true) {
       bookStatus.status = 'checked';
     } else {
@@ -126,14 +105,17 @@ btnAddBook.addEventListener('click', (e) => {
     myLibrary.push(newBook);
 
     addBookToLibrary(newBook);
-
-    e.preventDefault();
+    
     popUpWindow.style.visibility = 'hidden';
     document.querySelector('.black').remove();
     bookTitle.value = '';
     bookAuthor.value = '';
     bookPages.value = '';
     bookStatus.checked = false;
+
+    bookTitleErrorMessage.textContent = '';
+    bookAuthorErrorMessage.textContent = '';
+    bookPagesErrorMessage.textContent = '';
   }
 });
 
@@ -141,7 +123,55 @@ btnCloseWindow.addEventListener('click', () => {
   popUpWindow.style.visibility = 'hidden';
   document.querySelector('.black').remove();
   bookStatus.checked = false;
-  emptyBookPages.style.visibility = 'hidden';
-  emptyBookAuthor.style.visibility = 'hidden';
-  emptyBookTitle.style.visibility = 'hidden';
 });
+
+function fieldsCheck() {
+  let isBookTitle = false;
+  let isBookAuthor = false;
+  let isBookPages = false;
+
+  let canSubmit = false;
+
+  if (bookTitle.validity.valueMissing) {
+    bookTitleErrorMessage.textContent = 'Please fill out this field.';
+  } else if (bookTitle.validity.patternMismatch) {
+    bookTitleErrorMessage.textContent = 'Minimum 2 characters [A-Z].';
+  } else {
+    isBookTitle = true;
+  }
+
+  if (bookAuthor.validity.valueMissing) {
+    bookAuthorErrorMessage.textContent = 'Please fill out this field.';
+  } else if (bookAuthor.validity.patternMismatch) {
+    bookAuthorErrorMessage.textContent = 'Minimum 2 characters [A-Z].';
+  } else {
+    isBookAuthor = true;
+  }
+
+  if (bookPages.validity.valueMissing) {
+    bookPagesErrorMessage.textContent = 'Please fill out this field.';
+  } else if (bookPages.validity.patternMismatch) {
+    bookPagesErrorMessage.textContent = 'Min 10, Max 10000 pages.';
+  } else {
+    isBookPages = true;
+  }
+
+  if (isBookTitle === true) {
+    bookTitleErrorMessage.textContent = '';
+  } 
+
+  if (isBookAuthor === true) {
+    bookAuthorErrorMessage.textContent = '';
+  } 
+  
+  if (isBookPages === true) {
+    bookPagesErrorMessage.textContent = '';
+  }
+
+  if (isBookTitle && isBookAuthor && isBookPages) {
+    canSubmit = true;
+    return canSubmit;
+  } else {
+    return canSubmit;
+  }
+}
